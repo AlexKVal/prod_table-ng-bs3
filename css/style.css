@@ -1,3 +1,9 @@
+/**
+ * for angular_ui/bootstrap
+ */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+/* custom styles */
 .filterable-table {
   margin: 10px;
   width: 270px;

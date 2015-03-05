@@ -1,6 +1,6 @@
 (function() {
 
-  angular.module('productsTable', [])
+  angular.module('productsTable', ['ui.bootstrap'])
 
   .directive('filterableTable', function(){
     return {
