@@ -5,6 +5,8 @@ Technologies:
 - AngularJS
 - [angular_ui/bootstrap](https://github.com/angular-ui/bootstrap)
 
+For now only "typeahead"-directive used.
+
 In a console run:
 
     $ git clone https://github.com/AlexKVal/prod_table-ng-bs3
