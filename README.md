@@ -16,4 +16,4 @@ In a console run:
 
 Result should look like this:
 
-![](https://raw.githubusercontent.com/AlexKVal/react-thinking/images/images/result.png)
+![](https://raw.githubusercontent.com/AlexKVal/prod_table-ng-bs3/images/images/result.png)
