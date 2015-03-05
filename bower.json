@@ -1,0 +1,27 @@
+{
+  "name": "products-bs3",
+  "version": "0.0.1",
+  "homepage": "https://github.com/AlexKVal/products-bs3",
+  "authors": [
+    "AlexKVal <alexkval@gmail.com>"
+  ],
+  "description": "AngularJS version of table for products",
+  "main": "products-bs3",
+  "keywords": [
+    "AngularJS",
+    "bootstrap"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.2",
+    "angular": "~1.3.14"
+  }
+}

@@ -1,0 +1,19 @@
+<table class='table table-striped table-hover'>
+  <thead>
+    <tr><th>Name</th><th><span class="pull-right">Price</span></th></tr>
+  </thead>
+
+  <tbody ng-repeat='category in categories'>
+    <tr>
+      <th
+        class="bg-warning text-center"
+        colSpan="2"><span class="category-name">{{category.name}}</span>
+      </th>
+    </tr>
+    <tr ng-repeat='product in category.products | filter: searchFilter | filter: (productsFilter ? {stocked: true} : {})'>
+      <td><span ng-style="product.stocked ? {} : {color:'darkorange'}">{{product.name}}</span></td>
+      <td><span class="pull-right">{{product.price}}</span></td>
+    </tr>
+  </tbody>
+
+</table>
