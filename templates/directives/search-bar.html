@@ -2,9 +2,11 @@
   <input
     ng-model="searchFilter"
     type="search"
+    typeahead="name for name in product_names | filter:$viewValue | limitTo:8"
     class="form-control"
     placeholder="Search..."
   >
+
   <div class="checkbox">
     <label>
       <input

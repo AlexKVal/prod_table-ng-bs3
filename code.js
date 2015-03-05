@@ -18,9 +18,11 @@
       templateUrl: 'templates/directives/products-table.html',
       link: function(scope, element, attrs){
         scope.categories = [];
+        scope.product_names = [];
 
         var lastCategory = {name: null};
         Product.all().forEach(function(product){
+          scope.product_names.push(product.name);
           if (lastCategory.name !== product.category) { // new category
             var newCategory = { name: product.category, products: [product]};
 
