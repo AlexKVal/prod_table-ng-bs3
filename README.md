@@ -1,6 +1,6 @@
 #### It's an AngularJS + angular_ui/bootstrap version of [AlexKVal/react-thinking](https://github.com/AlexKVal/react-thinking/)
 
-Technologies:
+Tech stack:
 - Bootstrap (CSS only)
 - AngularJS
 - [angular_ui/bootstrap](https://github.com/angular-ui/bootstrap)
@@ -15,7 +15,6 @@ In a console run:
     $ npm install -g gulp
     $ npm install
     $ gulp
-    $ python -m SimpleHTTPServer 8000 & open http://localhost:8000
 
 Result should look like this:
 
