@@ -1,0 +1,13 @@
+{
+  "name": "prod_table-ng-bs3",
+  "version": "0.0.2",
+  "description": "AngularJS + angular_ui/bootstrap version of table for products",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-bower": "0.0.10"
+  }
+}
