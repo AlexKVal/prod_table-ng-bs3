@@ -2,7 +2,12 @@ var gulp = require('gulp'),
     bower = require('gulp-bower'),
     connect = require('gulp-connect'),
     shell = require('gulp-shell'),
-    vendor = require('gulp-concat-vendor');
+    vendor = require('gulp-concat-vendor'),
+    del = require('del');
+
+gulp.task('clean', function () {
+  del(['public']);
+});
 
 gulp.task('bower:install', function () {
   return bower();
@@ -29,4 +34,4 @@ gulp.task('open_in_browser', shell.task([
   'open http://localhost:8080'
 ]));
 
-gulp.task('default', ['bower', 'style', 'connect', 'open_in_browser']);
+gulp.task('default', ['bower', 'clean', 'style', 'connect', 'open_in_browser']);
