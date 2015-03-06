@@ -1,16 +1,7 @@
 {
   "name": "products-ng-bs3",
   "version": "0.0.2",
-  "homepage": "https://github.com/AlexKVal/products-bs3",
-  "authors": [
-    "AlexKVal <alexkval@gmail.com>"
-  ],
   "description": "AngularJS + angular_ui/bootstrap version of table for products",
-  "main": "products-ng-bs3",
-  "keywords": [
-    "AngularJS",
-    "Bootstrap"
-  ],
   "license": "MIT",
   "private": true,
   "ignore": [
