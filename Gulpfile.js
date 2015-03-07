@@ -3,6 +3,7 @@ var gulp = require('gulp'),
     connect = require('gulp-connect'),
     shell = require('gulp-shell'),
     vendor = require('gulp-concat-vendor'),
+    mainBowerFiles = require('main-bower-files'),
     del = require('del');
 
 gulp.task('clean', function () {
@@ -20,6 +21,11 @@ gulp.task('bootstrap', function () {
 
   gulp.src('bower_components/bootstrap/dist/fonts/*')
   .pipe(gulp.dest('public/fonts'));
+});
+
+gulp.task('vendor_js', function () {
+  gulp.src(mainBowerFiles())
+  .pipe(gulp.dest('public/js'));
 });
 
 gulp.task('style', function(){

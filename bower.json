@@ -14,5 +14,10 @@
   "dependencies": {
     "angular-bootstrap": "~0.12.1",
     "bootstrap": "~3.3.2"
+  },
+  "overrides": {
+    "bootstrap": {
+      "ignore": true
+    }
   }
 }
