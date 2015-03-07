@@ -13,16 +13,14 @@ gulp.task('bower', function () {
   return bower();
 });
 
-gulp.task('bootstrap:css', function () {
+gulp.task('bootstrap', function () {
   gulp.src('bower_components/bootstrap/dist/css/*.min.css')
   .pipe(vendor('bs3.min.css'))
   .pipe(gulp.dest('public/css'));
-});
-gulp.task('bootstrap:fonts', function () {
+
   gulp.src('bower_components/bootstrap/dist/fonts/*')
   .pipe(gulp.dest('public/fonts'));
 });
-gulp.task('bootstrap', ['bootstrap:css', 'bootstrap:fonts']);
 
 gulp.task('style', function(){
   gulp.src('src/css/*.css')
