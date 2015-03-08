@@ -24,25 +24,19 @@ gulp.task('bootstrap', ['bower'], function () {
 });
 
 gulp.task('style', ['bootstrap'], function(){
-  gulp.src('src/css/*.css')
+  return gulp.src('src/css/*.css')
   .pipe(gulp.dest('public/css'));
 });
 
 gulp.task('vendor_js', ['bower'], function () {
-  gulp.src(mainBowerFiles())
+  return gulp.src(mainBowerFiles())
   .pipe(concat("vendor.js"))
-  .pipe(uglify())
-  .pipe(gulp.dest('public/js'));
-});
-
-gulp.task('js', ['vendor_js'], function () {
-  gulp.src('src/js/*.js')
-  .pipe(uglify())
+  // .pipe(uglify())
   .pipe(gulp.dest('public/js'));
 });
 
 gulp.task('templates', function(){
-  gulp.src('src/templates/**/*.html')
+  return gulp.src('src/templates/**/*.html')
   .pipe(minifyHTML({
     empty: true,
     spare: true,
@@ -53,17 +47,28 @@ gulp.task('templates', function(){
     prefix: "templates/"
   }))
   .pipe(concat("templates.js"))
-  .pipe(uglify())
+  // .pipe(uglify())
   .pipe(gulp.dest('public/js'));
 });
 
-gulp.task('html', ['templates'], function(){
-  gulp.src('src/*.html')
+gulp.task('js', ['vendor_js', 'templates'], function () {
+  return gulp.src([
+    'public/js/vendor.js',
+    'public/js/templates.js',
+    'src/js/*.js'
+  ])
+  .pipe(concat("all.js"))
+  // .pipe(uglify())
+  .pipe(gulp.dest('public/js'));
+});
+
+gulp.task('html', function(){
+  return gulp.src('src/*.html')
   .pipe(gulp.dest('public'));
 });
 
 gulp.task('connect', ['compile'], function () {
-  connect.server({
+  return connect.server({
     root: 'public',
     livereload: true
   });
