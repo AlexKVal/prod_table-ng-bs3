@@ -4,6 +4,8 @@ var gulp = require('gulp'),
     shell = require('gulp-shell'),
     vendor = require('gulp-concat-vendor'),
     mainBowerFiles = require('main-bower-files'),
+    ngHtml2Js = require("gulp-ng-html2js"),
+    concat = require("gulp-concat"),
     del = require('del');
 
 gulp.task('bower', function () {
@@ -35,8 +37,10 @@ gulp.task('js', ['vendor_js'], function () {
 });
 
 gulp.task('templates', function(){
-  gulp.src('src/templates/**/*')
-  .pipe(gulp.dest('public/templates'));
+  gulp.src('src/templates/**/*.html')
+  .pipe(ngHtml2Js({ moduleName: "app_templates", prefix: "templates/" }))
+  .pipe(concat("templates.js"))
+  .pipe(gulp.dest('public/js'));
 });
 
 gulp.task('html', ['templates'], function(){
