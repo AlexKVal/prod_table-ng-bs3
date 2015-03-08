@@ -11,7 +11,7 @@
     };
   })
 
-  .directive('productsTable', function(Product){
+  .directive('productsTable', ['Product', function(Product){
     return {
       restrict: 'E',
       replace: true,
@@ -35,7 +35,7 @@
         // console.log(JSON.stringify(scope.categories));
       }
     };
-  })
+  }])
 
   .directive('searchBar', function(){
     return {

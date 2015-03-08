@@ -30,11 +30,14 @@ gulp.task('style', ['bootstrap'], function(){
 
 gulp.task('vendor_js', ['bower'], function () {
   gulp.src(mainBowerFiles())
+  .pipe(concat("vendor.js"))
+  .pipe(uglify())
   .pipe(gulp.dest('public/js'));
 });
 
 gulp.task('js', ['vendor_js'], function () {
   gulp.src('src/*.js')
+  .pipe(uglify())
   .pipe(gulp.dest('public'));
 });
 
