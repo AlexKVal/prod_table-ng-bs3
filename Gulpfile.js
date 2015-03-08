@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     ngHtml2Js = require("gulp-ng-html2js"),
     concat = require("gulp-concat"),
     minifyHTML = require('gulp-minify-html'),
+    uglify = require("gulp-uglify"),
     del = require('del');
 
 gulp.task('bower', function () {
@@ -49,6 +50,7 @@ gulp.task('templates', function(){
     prefix: "templates/"
   }))
   .pipe(concat("templates.js"))
+  .pipe(uglify())
   .pipe(gulp.dest('public/js'));
 });
 
