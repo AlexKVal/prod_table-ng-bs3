@@ -36,9 +36,9 @@ gulp.task('vendor_js', ['bower'], function () {
 });
 
 gulp.task('js', ['vendor_js'], function () {
-  gulp.src('src/*.js')
+  gulp.src('src/js/*.js')
   .pipe(uglify())
-  .pipe(gulp.dest('public'));
+  .pipe(gulp.dest('public/js'));
 });
 
 gulp.task('templates', function(){
