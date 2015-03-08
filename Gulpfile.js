@@ -58,7 +58,7 @@ gulp.task('js', ['vendor_js', 'templates'], function () {
     'src/js/*.js'
   ])
   .pipe(concat("all.js"))
-  // .pipe(uglify())
+  .pipe(uglify())
   .pipe(gulp.dest('public/js'));
 });
 
