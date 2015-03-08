@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     mainBowerFiles = require('main-bower-files'),
     ngHtml2Js = require("gulp-ng-html2js"),
     concat = require("gulp-concat"),
+    minifyHTML = require('gulp-minify-html'),
     del = require('del');
 
 gulp.task('bower', function () {
@@ -38,7 +39,15 @@ gulp.task('js', ['vendor_js'], function () {
 
 gulp.task('templates', function(){
   gulp.src('src/templates/**/*.html')
-  .pipe(ngHtml2Js({ moduleName: "app_templates", prefix: "templates/" }))
+  .pipe(minifyHTML({
+    empty: true,
+    spare: true,
+    quotes: true
+  }))
+  .pipe(ngHtml2Js({
+    moduleName: "app_templates",
+    prefix: "templates/"
+  }))
   .pipe(concat("templates.js"))
   .pipe(gulp.dest('public/js'));
 });
