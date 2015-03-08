@@ -8,23 +8,35 @@ var gulp = require('gulp'),
     concat = require("gulp-concat"),
     minifyHTML = require('gulp-minify-html'),
     uglify = require("gulp-uglify"),
+    minifyCSS = require('gulp-minify-css'),
     del = require('del');
 
 gulp.task('bower', function () {
   return bower();
 });
 
-gulp.task('bootstrap', ['bower'], function () {
-  gulp.src('bower_components/bootstrap/dist/css/*.min.css')
-  .pipe(vendor('bs3.min.css'))
-  .pipe(gulp.dest('public/css'));
-
-  gulp.src('bower_components/bootstrap/dist/fonts/*')
+gulp.task('bootstrap:fonts', ['bower'], function () {
+  return gulp.src('bower_components/bootstrap/dist/fonts/*')
   .pipe(gulp.dest('public/fonts'));
 });
 
+gulp.task('bootstrap', ['bootstrap:fonts'], function () {
+  return gulp.src([
+    'bower_components/bootstrap/dist/css/bootstrap.css',
+    'bower_components/bootstrap/dist/css/bootstrap-theme.css'
+  ])
+  .pipe(concat('vendor.css'))
+  // .pipe(minifyCSS())
+  .pipe(gulp.dest('tmp/css'));
+});
+
 gulp.task('style', ['bootstrap'], function(){
-  return gulp.src('src/css/*.css')
+  return gulp.src([
+    'tmp/css/vendor.css',
+    'src/css/*.css'
+  ])
+  .pipe(concat('all.css'))
+  .pipe(minifyCSS())
   .pipe(gulp.dest('public/css'));
 });
 
@@ -32,7 +44,7 @@ gulp.task('vendor_js', ['bower'], function () {
   return gulp.src(mainBowerFiles())
   .pipe(concat("vendor.js"))
   // .pipe(uglify())
-  .pipe(gulp.dest('public/js'));
+  .pipe(gulp.dest('tmp/js'));
 });
 
 gulp.task('templates', function(){
@@ -48,13 +60,13 @@ gulp.task('templates', function(){
   }))
   .pipe(concat("templates.js"))
   // .pipe(uglify())
-  .pipe(gulp.dest('public/js'));
+  .pipe(gulp.dest('tmp/js'));
 });
 
 gulp.task('js', ['vendor_js', 'templates'], function () {
   return gulp.src([
-    'public/js/vendor.js',
-    'public/js/templates.js',
+    'tmp/js/vendor.js',
+    'tmp/js/templates.js',
     'src/js/*.js'
   ])
   .pipe(concat("all.js"))
@@ -85,7 +97,7 @@ gulp.task('compile', [
 ]);
 
 gulp.task('clean', function () {
-  del(['public']);
+  del(['public', 'tmp']);
 });
 
 gulp.task('default', ['open_in_browser']);
