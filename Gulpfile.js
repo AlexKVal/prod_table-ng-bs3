@@ -9,6 +9,8 @@ var gulp = require('gulp'),
     minifyHTML = require('gulp-minify-html'),
     uglify = require("gulp-uglify"),
     minifyCSS = require('gulp-minify-css'),
+    browserify = require('browserify'),
+    transform = require('vinyl-transform'),
     del = require('del');
 
 gulp.task('bower', function () {
@@ -63,12 +65,17 @@ gulp.task('templates', function(){
   .pipe(gulp.dest('tmp/js'));
 });
 
-gulp.task('js', ['vendor_js', 'templates'], function () {
+gulp.task('js', ['vendor_js', 'templates'], function() {
+  var browserified = transform(function(filename) {
+    return browserify(filename).bundle();
+  });
+
   return gulp.src([
     'tmp/js/vendor.js',
     'tmp/js/templates.js',
     'src/js/*.js'
   ])
+  .pipe(browserified)
   .pipe(concat("all.js"))
   .pipe(uglify())
   .pipe(gulp.dest('public/js'));
@@ -96,8 +103,8 @@ gulp.task('compile', [
   'html'
 ]);
 
-gulp.task('clean', function () {
-  del(['public', 'tmp']);
+gulp.task('clean', function (cb) {
+  del(['public', 'tmp'], cb);
 });
 
 gulp.task('default', ['open_in_browser']);
